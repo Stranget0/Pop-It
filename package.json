@@ -1,0 +1,17 @@
+{
+  "name": "pop-it",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.html",
+  "scripts": {
+    "ts-dev": "tsc --watch script.ts --outfile dist/script.js",
+    "scss-dev": "sass --watch styles.scss dist/styles.css"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "sass": "^1.62.1",
+    "typescript": "^5.0.4"
+  }
+}
