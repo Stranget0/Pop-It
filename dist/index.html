@@ -6,23 +6,27 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Pop It!</title>
+	<link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-	<nav class="nav">
-		<ul class="nav__list">
-			<a class="nav__list__item" href="#">User Name</a>
-			<a class="nav__list__item" href="#">LOREM IPSUM</a>
-			<a class="nav__list__item" href="#">LOREM IPSUM</a>
-			<a class="nav__list__item" href="#">LOREM IPSUM</a>
-		</ul>
-	</nav>
+	<header class="header">
+		<nav class="header__nav menu">
+			<button class="menu__toggle" aria-label="open menu">menu</button>
+			<ul class="header__list menu__list" aria-expanded="false">
+				<a class="text text--body header__list__item" href="#"><strong>User Name</strong></a>
+				<a class="text text--body header__list__item" href="#">LOREM IPSUM</a>
+				<a class="text text--body header__list__item" href="#">LOREM IPSUM</a>
+				<a class="text text--body header__list__item" href="#">LOREM IPSUM</a>
+			</ul>
+		</nav>
+	</header>
 	<main>
 		<section class="section--hero">
 			<article class="article article--hero">
-				<h1 class="text--title">pop it!</h1>
-				<p>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>
-				<button class="button--blue">button</button>
+				<h1 class="text text--title">pop it!</h1>
+				<p text text--body>Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum</p>
+				<button class="button button--blue">button</button>
 			</article>
 		</section>
 		<section class="section section--article">
@@ -30,7 +34,7 @@
 				<h2 class="text text--section-title" id="article-title-1">
 					Lorem Ipsum pop it?
 				</h2>
-				<p id="article-text-1">
+				<p class="text text--body" id="article-text-1">
 					Take your time. Speed will come later. Work that paint. We have all
 					at one time or another mixed some mud. I thought today we would do a
 					happy little picture. Van Dyke Brown is a very nice brown, it's
@@ -49,19 +53,19 @@
 				<ul class="carousel__container">
 					<li class="carousel__slide" aria-labelledby="carousel-slide-1-1">
 						<img src="./assets/square.png" width="150" height="150" />
-						<p id="carousel-slide-1-1">I'm a water fanatic</p>
-						<button class="button button--orange button--small>Button</button>
-            </li>
-            <li class=" carousel__slide" aria-labelledby="carousel-slide-1-2">
-							<img src="./assets/amongus.png" width="150" height="150" />
-							<p id="carousel-slide-1-2">I'm a water fanatic</p>
-							<button class="button button--orange button--small">
-								Button
-							</button>
+						<p class="text text--body" id="carousel-slide-1-1">I'm a water fanatic</p>
+						<button class="button button--orange button--small">Button</button>
+					</li>
+					<li class=" carousel__slide" aria-labelledby="carousel-slide-1-2">
+						<img src="./assets/amongus.png" width="150" height="150" />
+						<p class="text text--body" id="carousel-slide-1-2">I'm a water fanatic</p>
+						<button class="button button--orange button--small">
+							Button
+						</button>
 					</li>
 					<li class="carousel__slide" aria-labelledby="carousel-slide-1-3">
 						<img src="./assets/round.png" width="150" height="150" />
-						<p id="carousel-slide-1-3">I'm a water fanatic</p>
+						<p class="text text--body" id="carousel-slide-1-3">I'm a water fanatic</p>
 						<button class="button button--orange button--small">
 							Button
 						</button>
@@ -74,7 +78,7 @@
 				<h2 class="text text--section-title" id="article-title-2">
 					Lorem Ipsum pop it?
 				</h2>
-				<p id="article-text-2">
+				<p class="text text--body" id="article-text-2">
 					Take your time. Speed will come later. Work that paint. We have all
 					at one time or another mixed some mud. I thought today we would do a
 					happy little picture. Van Dyke Brown is a very nice brown, it's
@@ -86,16 +90,17 @@
 			</article>
 			<img class="section__image" src="./assets/photo 2.png" alt="fun park" aria-labelledby="article-title-1"
 				aria-describedby="article-text-2" />
-			<img class="section__blob" src="./assets/bg-grid 1.png" alt="" />
+			<img class="section__blob" src="./assets/bg-grid 1.png" alt="" aria-hidden="true" />
 		</section>
 	</main>
-	<footer>
+	<footer class="footer">
 		<ul class="footer__list">
-			<li class="footer__list__item"><a href="" class="footer__item__link">Happy ipsum.BR</a></li>
-			<li class="footer__list__item"><a href="" class="footer__item__link">Lorem Ipsum</a></li>
-			<li class="footer__list__item"><a href="" class="footer__item__link">Lorem Ipsum</a></li>
-			<li class="footer__list__item"><a href="" class="footer__item__link">Lorem Ipsum</a></li>
-			<li class="footer__list__item"><a href="" class="footer__item__link">Lorem Ipsum</a></li>
+			<li class="footer__list__item"><a href="" class="text text--body footer__item__link"><strong>Happy
+						ipsum.BR</strong></a></li>
+			<li class="footer__list__item"><a href="" class="text text--body footer__item__link">Lorem Ipsum</a></li>
+			<li class="footer__list__item"><a href="" class="text text--body footer__item__link">Lorem Ipsum</a></li>
+			<li class="footer__list__item"><a href="" class="text text--body footer__item__link">Lorem Ipsum</a></li>
+			<li class="footer__list__item"><a href="" class="text text--body footer__item__link">Lorem Ipsum</a></li>
 		</ul>
 	</footer>
 </body>

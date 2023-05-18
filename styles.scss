@@ -1,3 +1,129 @@
-test {
-  color: red;
+@use "normalize.css";
+
+// #region resets
+
+// #endregion
+
+:root {
+  // Kolory
+  --color-orange-400: #ffbf69;
+  --color-blue-300: #cbf3f0;
+  --color-gray-800: #333333;
+  --color-black: black;
+  --color-white: white;
+}
+
+// Podstawowe placeholder selectory
+// #region utilities
+%flex {
+  display: flex;
+}
+
+%flex-col {
+  @extend %flex;
+  flex-direction: column;
+}
+
+%bg-orange-400 {
+  background-color: var(--color-orange-400);
+}
+
+%bg-blue-300 {
+  background-color: var(--color-blue-300);
+}
+
+%bg-white {
+  background-color: var(--color-white);
+}
+
+%bg-gray-800 {
+  background-color: var(--color-gray-800);
+}
+
+%p-x-34 {
+  padding-inline: 0.125rem;
+}
+%p-x-74 {
+  padding-inline: 4.625rem;
+}
+%p-x-77 {
+  padding-inline: 4.813rem;
+}
+%m-x-34 {
+  margin-inline: 0.125rem;
+}
+%m-x-74 {
+  margin-inline: 4.625rem;
+}
+%m-x-77 {
+  margin-inline: 4.813rem;
+}
+// #endregion
+
+.button {
+  &--blue {
+    @extend %bg-blue-300;
+  }
+  &--orange {
+    @extend %bg-orange-400;
+  }
+}
+
+body {
+  @extend %bg-white;
+}
+
+.header {
+  @extend %bg-orange-400;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  &__list {
+    width: 100%;
+  }
+
+  @media (width >= 640px) {
+    &__list {
+      display: flex;
+      background-color: orange;
+      &__item {
+        &:first-of-type {
+          background-color: red;
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}
+.menu {
+  @extend %flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &__list {
+    display: none;
+  }
+  @media (width >= 640px) {
+    &__toggle {
+      display: none;
+    }
+    &__list {
+      display: flex;
+    }
+  }
+}
+
+.section--hero {
+  @extend %bg-orange-400;
+}
+
+.section--carousel {
+  @extend %bg-blue-300;
+}
+
+.footer {
+  @extend %bg-gray-800;
 }
