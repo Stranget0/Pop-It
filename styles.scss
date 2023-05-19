@@ -403,13 +403,24 @@ a {
   }
 
   &--hero {
-    @extend %bg-orange-400, %text-white;
-    @include bg-image("./assets/background 1.png");
+    @extend %bg-orange-400, %text-white, %relative;
 
     background-position: center right;
     padding: 10.3125rem 4.8125rem 7rem;
-
     text-align: left;
+    isolation: isolate;
+    overflow: hidden;
+
+    &::before {
+      @extend %absolute;
+      @include bg-image("./assets/background 1.png");
+
+      background-position: center 80%;
+      content: "";
+      inset: 0;
+      filter: url(#noise);
+      z-index: -1;
+    }
 
     &__article {
       max-width: 30rem;
