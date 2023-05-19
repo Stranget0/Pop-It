@@ -5,12 +5,17 @@
   "main": "index.html",
   "scripts": {
     "ts-dev": "tsc --watch script.ts --outfile dist/script.js",
-    "scss-dev": "sass --watch styles.scss dist/styles.css"
+    "scss-dev": "sass --watch styles.scss dist/styles.css",
+    "postcss-dev": "postcss --use autoprefixer cssnano -o dist/styles.css dist/*.css"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "cssnano": "^6.0.1",
+    "postcss": "^8.4.23",
+    "postcss-cli": "^10.1.0",
     "sass": "^1.62.1",
     "typescript": "^5.0.4"
   }
