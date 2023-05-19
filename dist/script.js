@@ -21,9 +21,14 @@ class BurgerMenu extends HTMLElement {
   }
   setIsOpen(isOpen) {
     this.listElement.setAttribute("aria-expanded", `${isOpen}`);
+    this.setAttribute("aria-hidden", `${isOpen}`);
     if (isOpen) {
+      this.setAttribute("hidden");
       setTimeout(() => window.addEventListener("click", this.handleCloseClick));
-    } else window.removeEventListener("click", this.handleCloseClick);
+    } else {
+      this.removeAttribute("hidden");
+      window.removeEventListener("click", this.handleCloseClick);
+    }
   }
 
   getIsExpanded(listElement) {
@@ -31,4 +36,6 @@ class BurgerMenu extends HTMLElement {
   }
 }
 
-window.customElements.define("burger-menu", BurgerMenu, { extends: "nav" });
+customElements.define("burger-menu", BurgerMenu, { extends: "nav" });
+
+class Carousel extends HTMLElement {}
