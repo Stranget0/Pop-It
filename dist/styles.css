@@ -329,7 +329,7 @@ button {
   font-weight: 900;
 }
 
-.section--hero, .section, a {
+.section--hero, .section, .menu, a {
   position: relative;
 }
 
@@ -440,6 +440,10 @@ img {
   max-width: 100%;
 }
 
+button {
+  cursor: pointer;
+}
+
 :root {
   --color-orange-400: #ffbf69;
   --color-blue-300: #cbf3f0;
@@ -499,7 +503,6 @@ body {
 .button {
   padding-inline: 5.4375rem;
   padding-block: 1.1875rem;
-  cursor: pointer;
 }
 
 .button--small {
@@ -527,8 +530,22 @@ body {
   justify-content: flex-end;
   align-items: center;
 }
-.menu__list {
-  display: none;
+@media (width < 640px) {
+  .menu__list {
+    display: none;
+  }
+  .menu__list[aria-expanded=true] {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8rem;
+    background-color: var(--color-orange-400);
+  }
+  .menu__list[aria-expanded=true] .menu__list__item {
+    padding: 1rem;
+  }
 }
 @media (width >= 640px) {
   .menu__toggle {
@@ -559,6 +576,7 @@ body {
   left: 0;
   right: 0;
   z-index: 10;
+  text-align: right;
 }
 @media (width >= 640px) {
   .header__list {
