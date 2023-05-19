@@ -1,8 +1,6 @@
-@use "normalize.css";
+@use "reset.css";
 
-// #region resets
-
-// #endregion
+$md: 640px;
 
 :root {
   // Kolory
@@ -13,8 +11,16 @@
   --color-white: white;
 }
 
-// Podstawowe placeholder selectory
+// Podstawowe selectory do rozszerzania
 // #region utilities
+%uppercase {
+  text-transform: uppercase;
+}
+
+%extrabold {
+  font-weight: 900;
+}
+
 %flex {
   display: flex;
 }
@@ -24,12 +30,12 @@
   flex-direction: column;
 }
 
-%bg-orange-400 {
-  background-color: var(--color-orange-400);
-}
-
 %bg-blue-300 {
   background-color: var(--color-blue-300);
+}
+
+%bg-orange-400 {
+  background-color: var(--color-orange-400);
 }
 
 %bg-white {
@@ -40,64 +46,123 @@
   background-color: var(--color-gray-800);
 }
 
-%p-x-34 {
-  padding-inline: 0.125rem;
+%text-black {
+  color: var(--color-black);
 }
-%p-x-74 {
-  padding-inline: 4.625rem;
+%text-white {
+  color: var(--color-white);
 }
-%p-x-77 {
-  padding-inline: 4.813rem;
+
+// %p-x-34 {
+//   padding-inline: 0.125rem;
+// }
+// %p-x-74 {
+//   padding-inline: 4.625rem;
+// }
+// %p-x-77 {
+//   padding-inline: 4.813rem;
+// }
+// %m-x-34 {
+//   margin-inline: 0.125rem;
+// }
+// %m-x-74 {
+//   margin-inline: 4.625rem;
+// }
+// %m-x-77 {
+//   margin-inline: 4.813rem;
+// }
+
+%bg-fit-nr {
+  background-size: contain;
+  background-repeat: no-repeat;
 }
-%m-x-34 {
-  margin-inline: 0.125rem;
-}
-%m-x-74 {
-  margin-inline: 4.625rem;
-}
-%m-x-77 {
-  margin-inline: 4.813rem;
+@mixin bg-image($url) {
+  @extend %bg-fit-nr;
+
+  background-image: url($url);
 }
 // #endregion
 
-.button {
-  &--blue {
-    @extend %bg-blue-300;
-  }
-  &--orange {
-    @extend %bg-orange-400;
-  }
-}
-
 body {
   @extend %bg-white;
+
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
-.header {
+// #region atoms
+.text {
+  max-width: 75ch;
+}
+
+.text--title {
+  @extend %uppercase, %extrabold;
+
+  font-size: 8.6875rem;
+}
+
+.text--section-title {
+  @extend %uppercase;
+
+  font-size: 1.5rem;
+}
+
+.text--body {
+  font-size: 1rem;
+  line-height: 1.46;
+}
+
+.text--body--u,
+.text--body--ub {
+  @extend %uppercase;
+}
+.text--body--b,
+.text--body--ub {
+  @extend %extrabold;
+}
+
+.button {
+  @extend .text--body, %uppercase, %bg-blue-300;
+
+  padding-inline: 5.4375rem;
+  padding-block: 1.1875rem;
+}
+
+.button--orange {
   @extend %bg-orange-400;
+}
 
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+.button--small {
+  padding-inline: 2rem;
+  padding-block: 0.5rem;
+}
+// #endregion
 
-  &__list {
-    width: 100%;
+// #region molecules
+.space-around {
+  @extend %flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+.article {
+  @extend %flex-col;
+
+  align-items: center;
+  text-align: center;
+
+  &--left {
+    align-items: flex-start;
+    text-align: left;
   }
 
-  @media (width >= 640px) {
-    &__list {
-      display: flex;
-      background-color: orange;
-      &__item {
-        &:first-of-type {
-          background-color: red;
-          margin-right: auto;
-        }
-      }
-    }
+  &__title {
+    margin-bottom: 1.0625rem;
   }
 }
+// #endregion
+
+// #region organisms
 .menu {
   @extend %flex;
   justify-content: flex-end;
@@ -106,7 +171,7 @@ body {
   &__list {
     display: none;
   }
-  @media (width >= 640px) {
+  @media (width >= $md) {
     &__toggle {
       display: none;
     }
@@ -116,8 +181,52 @@ body {
   }
 }
 
-.section--hero {
+.header {
   @extend %bg-orange-400;
+  $pt: 2.125rem;
+
+  padding: $pt 4.625rem $pt * 2/3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+
+  &__list {
+    width: 100%;
+  }
+
+  @media (width >= $md) {
+    &__list {
+      display: flex;
+      gap: 1.75rem;
+      &__item {
+        &:first-of-type {
+          margin-right: auto;
+        }
+      }
+    }
+  }
+}
+
+.section--hero {
+  @extend %bg-orange-400, %text-white;
+  @include bg-image("./assets/background 1.png");
+
+  background-position: center right;
+  padding: 10.3125rem 4.8125rem 7rem;
+
+  text-align: left;
+
+  &__article {
+    max-width: 30rem;
+  }
+  &__title {
+    margin-bottom: 0.4375rem;
+  }
+
+  &__button {
+    margin-top: 4.5625rem;
+  }
 }
 
 .section--carousel {
@@ -126,4 +235,14 @@ body {
 
 .footer {
   @extend %bg-gray-800;
+
+  &__list {
+    @extend .space-around;
+  }
+}
+
+// #endregion
+
+.section + .section {
+  margin-top: 5.25rem;
 }
