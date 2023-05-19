@@ -30,6 +30,13 @@ $md: 640px;
   flex-direction: column;
 }
 
+%w-full {
+  width: 100%;
+}
+%h-full {
+  height: 100%;
+}
+
 %bg-blue-300 {
   background-color: var(--color-blue-300);
 }
@@ -52,7 +59,9 @@ $md: 640px;
 %text-white {
   color: var(--color-white);
 }
-
+%p-x-section {
+  padding-inline: 4.8125rem;
+}
 // %p-x-34 {
 //   padding-inline: 0.125rem;
 // }
@@ -138,11 +147,11 @@ body {
 // #endregion
 
 // #region molecules
-.space-around {
+.space-between {
   @extend %flex;
 
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
 }
 
 .article {
@@ -181,6 +190,22 @@ body {
   }
 }
 
+.carousel {
+  @extend %w-full;
+
+  &__container {
+    @extend .space-between, %w-full;
+
+    flex-wrap: wrap;
+  }
+
+  &__slide {
+    @extend %flex-col;
+
+    gap: 0.8125rem;
+  }
+}
+
 .header {
   @extend %bg-orange-400;
   $pt: 2.125rem;
@@ -208,6 +233,10 @@ body {
   }
 }
 
+.section {
+  @extend %p-x-section;
+}
+
 .section--hero {
   @extend %bg-orange-400, %text-white;
   @include bg-image("./assets/background 1.png");
@@ -231,13 +260,21 @@ body {
 
 .section--carousel {
   @extend %bg-blue-300;
+
+  padding-block: 5.875rem;
+  display: grid;
+  place-items: center;
+
+  &__carousel {
+    max-width: 58.875rem;
+  }
 }
 
 .footer {
-  @extend %bg-gray-800;
+  @extend %bg-gray-800, %p-x-section;
 
   &__list {
-    @extend .space-around;
+    @extend .space-between;
   }
 }
 
