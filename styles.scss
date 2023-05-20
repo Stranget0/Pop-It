@@ -190,6 +190,7 @@ button {
   --color-gray-800: #333333;
   --color-black: black;
   --color-white: white;
+  --color-red: red;
 }
 
 body {
@@ -220,13 +221,7 @@ body {
 // #endregion
 
 // #region atoms
-a {
-  @extend %relative;
-  @media (hover: hover) {
-    @include animated-underline;
-  }
-}
-
+//#region Font styles
 .text {
   max-width: 75ch;
 }
@@ -255,6 +250,14 @@ a {
 .text--body--b,
 .text--body--ub {
   @extend %extrabold;
+}
+// #endregion
+
+a {
+  @extend %relative;
+  @media (hover: hover) {
+    @include animated-underline;
+  }
 }
 
 .button {
@@ -290,15 +293,16 @@ a {
   margin-top: 1rem;
   text-align: center;
   text-decoration: underline;
-  --underline-color: red;
+  --underline-color: var(--color-red);
 
   &__red {
-    color: red;
+    color: var(--color-red);
   }
 }
 // #endregion
 
 // #region molecules
+// Ułóż elementy z automatycznym odstępem
 .space-between {
   @extend %flex;
 
@@ -306,6 +310,7 @@ a {
   align-items: center;
 }
 
+// Nagłówek i treść
 .article {
   @extend %flex-col, %flex-center;
 
@@ -325,6 +330,7 @@ a {
 // #endregion
 
 // #region organisms
+// Otwieralne menu
 .menu {
   @extend %flex, %relative;
 
@@ -366,6 +372,7 @@ a {
 
 .carousel {
   @extend %w-full, .article;
+
   container-type: inline-size;
   cursor: grab;
 
@@ -378,22 +385,20 @@ a {
   &__container {
     @extend %w-full, %flex;
 
-    // 26.1% of .carousel width
+    // 26.1% szerokości .carousel
     gap: 26.1cqw;
   }
 
   &__slide {
     @extend %flex-col;
 
-    gap: 0.8125rem;
     flex-shrink: 0;
-    display: inline-flex;
+    gap: 0.8125rem;
     user-select: none;
 
     &__img {
       @extend %img-cover;
-      vertical-align: middle;
-      transform-origin: center;
+      // Nie przeciągaj obrazków
       pointer-events: none;
     }
   }
@@ -507,6 +512,8 @@ a {
       background-position: center 80%;
       content: "";
       inset: 0;
+
+      // Customowy filtr svg. Ciekawy efekt, niestety nie działa na mozilli bez użycia JS
       filter: url(#noise);
       z-index: -1;
     }
@@ -544,7 +551,7 @@ a {
   @extend %bg-gray-800, %text-white, %p-x-section, %section-top-spacing;
 
   padding-block: 2.3125rem;
-  --underline-color: white;
+  --underline-color: var(--color-white);
 
   &__list {
     @extend .space-between;

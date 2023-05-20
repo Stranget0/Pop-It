@@ -81,6 +81,7 @@ class Carousel extends HTMLElement {
     this.startAutoScroll();
   }
 
+  // Smooth scrolling
   setTargetProgress(value, t = 0.1) {
     const frame = () => {
       const oldProgress = this.progress;
@@ -100,6 +101,7 @@ class Carousel extends HTMLElement {
     this.progressId = window.requestAnimationFrame(frame);
   }
 
+  // Spłaszcz itemy w zależności od prędkości
   updateSlidesTransform(oldProgress, progress, maxScaleDelta = 0.2) {
     const progressDelta = progress - oldProgress;
 
@@ -131,15 +133,20 @@ class Carousel extends HTMLElement {
       "stopAutoScroll",
       "updateSlidesTransform",
       "updateWrapTransform",
+      "handleWheel",
+      "queueAutoScroll",
     ].forEach((key) => (this[key] = this[key].bind(this)));
   }
   calculateSizes() {
     this.scrollWidthMemo = this.wrap.scrollWidth;
     this.clientWidthMemo = this.clientWidth;
     this.maxScroll = this.scrollWidthMemo - this.clientWidthMemo;
-    this.progressOfSlide = getPosSlideDifference(this.slides, this.maxScroll);
+    this.progressOfSlide = getSlideDifferenceFactor(
+      this.slides,
+      this.maxScroll
+    );
 
-    function getPosSlideDifference(slides, maxScroll) {
+    function getSlideDifferenceFactor(slides, maxScroll) {
       if (slides.length < 2) return 0;
 
       return (
@@ -163,6 +170,7 @@ class Carousel extends HTMLElement {
     this.dataset.isDragging = "true";
     this.stopAutoScroll();
   }
+
   getHandleTouchMove() {
     return throttle((e) => {
       if (!this.isDragging) return;
@@ -172,14 +180,30 @@ class Carousel extends HTMLElement {
       this.setTargetProgress(clamp(newProgress, 0, 1));
     }, 25);
   }
+
   handleTouchEnd(e) {
     this.isDragging = false;
     this.dataset.isDragging = "false";
-    this.startAutoScroll();
+    this.queueAutoScroll();
   }
+
+  handleWheel(e) {
+    e.preventDefault();
+    this.stopAutoScroll();
+    this.setTargetProgress(
+      clamp(this.progress + (e.deltaY / this.maxScroll) * 2, 0, 1)
+    );
+    this.queueAutoScroll();
+  }
+
+  queueAutoScroll() {
+    clearTimeout(this.autoScrollTimeoutId);
+    this.autoScrollTimeoutId = setTimeout(this.startAutoScroll, 15000);
+  }
+
   events() {
     window.addEventListener("resize", this.handleResize);
-    // window.addEventListener("wheel", this.handleWheel);
+    this.addEventListener("wheel", this.handleWheel);
     //
     this.addEventListener("touchstart", this.handleTouchStart);
     window.addEventListener("touchmove", this.getHandleTouchMove());
