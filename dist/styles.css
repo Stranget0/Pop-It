@@ -521,10 +521,21 @@ body {
   padding-inline: 5.4375rem;
   padding-block: 1.1875rem;
 }
-
 .button--small {
   padding-inline: 2rem;
   padding-block: 0.5rem;
+}
+.button:hover,
+.button :focus-visible {
+  transform: scale(1.1);
+}
+.button:active {
+  transform: scale(0.9);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .button {
+    transition: 0.25s transform cubic-bezier(0, 0, 0, 1);
+  }
 }
 
 .signature {
@@ -588,7 +599,7 @@ body {
 .carousel {
   container-type: inline-size;
   cursor: grab;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 .carousel__container {
   gap: 26.1cqw;

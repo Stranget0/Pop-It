@@ -262,15 +262,27 @@ a {
 
   padding-inline: 5.4375rem;
   padding-block: 1.1875rem;
-}
 
-.button--orange {
-  @extend %bg-orange-400;
-}
+  &--orange {
+    @extend %bg-orange-400;
+  }
 
-.button--small {
-  padding-inline: 2rem;
-  padding-block: 0.5rem;
+  &--small {
+    padding-inline: 2rem;
+    padding-block: 0.5rem;
+  }
+
+  &:hover,
+  :focus-visible {
+    transform: scale(1.1);
+  }
+  &:active {
+    transform: scale(0.9);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    transition: 0.25s transform $ease-out;
+  }
 }
 
 .signature {
@@ -357,7 +369,7 @@ a {
   container-type: inline-size;
   cursor: grab;
 
-  overflow-x: hidden;
+  overflow: hidden;
 
   &__container {
     @extend %w-full, %flex;
