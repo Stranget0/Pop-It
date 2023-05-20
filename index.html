@@ -10,7 +10,7 @@
 	<script type="text/javascript" src="script.js" defer></script>
 </head>
 
-<body>
+<body class="a-appear">
 	<header class="header">
 		<nav class="header__nav menu" is="burger-menu">
 			<button class="menu__toggle" aria-label="open menu">menu</button>
@@ -32,7 +32,7 @@
 			</article>
 		</section>
 		<section class="section section--with-article">
-			<article class="article section__article" aria-labelledby="article-title-1" aria-describedby="article-text-1">
+			<article class="article " aria-labelledby="article-title-1" aria-describedby="article-text-1">
 				<h2 class="text text--section-title article__title" id="article-title-1">
 					Lorem Ipsum pop it?
 				</h2>
@@ -48,37 +48,122 @@
 			</article>
 		</section>
 		<section class="section section--with-carousel">
-			<section class="carousel article section__article section--with-carousel__carousel"
-				aria-labelledby="carousel-title-1">
+			<section is="carousel-main" class="carousel section--with-carousel__carousel" aria-labelledby="carousel-title-1">
 				<h2 class="text text--section-title article__title" id="carousel-title-1">
 					Lorem Ipsum Pop It?
 				</h2>
-				<ul is="carousel-container" class="carousel__container" data-slides-count="3" data-min-width="640px">
+				<ul class="carousel__container" data-slides-count="3" data-min-width="640px">
 					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-1">
-						<img src="./assets/square.png" width="150" height="150" />
-						<p class="text text--body" id="carousel-slide-1-1">I'm a water fanatic</p>
-						<button class="button button--orange button--small">Button</button>
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/square.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-1">I'm a water fanatic</p>
+							<button class="button button--orange button--small">Button</button>
+						</figure>
 					</li>
 					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-2">
-						<img src="./assets/amongus.png" width="150" height="150" />
-						<p class="text text--body" id="carousel-slide-1-2">I'm a water fanatic</p>
-						<button class="button button--orange button--small">
-							Button
-						</button>
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/amongus.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-2">I'm a water fanatic</p>
+							<button class="button button--orange button--small">
+								Button
+							</button>
+						</figure>
 					</li>
 					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-3">
-						<img src="./assets/round.png" width="150" height="150" />
-						<p class="text text--body" id="carousel-slide-1-3">I'm a water fanatic</p>
-						<button class="button button--orange button--small">
-							Button
-						</button>
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/round.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-3">I'm a water fanatic</p>
+							<button class="button button--orange button--small">
+								Button
+							</button>
+						</figure>
+					</li>
+					<!-- Repeated -->
+					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-4">
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/square.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-4">I'm a water fanatic</p>
+							<button class="button button--orange button--small">Button</button>
+						</figure>
+					</li>
+					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-5">
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/amongus.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-5">I'm a water fanatic</p>
+							<button class="button button--orange button--small">
+								Button
+							</button>
+						</figure>
+					</li>
+					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-6">
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/round.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-6">I'm a water fanatic</p>
+							<button class="button button--orange button--small">
+								Button
+							</button>
+						</figure>
+					</li>
+
+
+					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-7">
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/square.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-7">I'm a water fanatic</p>
+							<button class="button button--orange button--small">Button</button>
+						</figure>
+					</li>
+					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-8">
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/amongus.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-8">I'm a water fanatic</p>
+							<button class="button button--orange button--small">
+								Button
+							</button>
+						</figure>
+					</li>
+					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-9">
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/round.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-9">I'm a water fanatic</p>
+							<button class="button button--orange button--small">
+								Button
+							</button>
+						</figure>
+					</li>
+
+
+					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-7">
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/square.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-7">I'm a water fanatic</p>
+							<button class="button button--orange button--small">Button</button>
+						</figure>
+					</li>
+					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-8">
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/amongus.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-8">I'm a water fanatic</p>
+							<button class="button button--orange button--small">
+								Button
+							</button>
+						</figure>
+					</li>
+					<li is="carousel-slide" class="carousel__slide" aria-labelledby="carousel-slide-1-9">
+						<figure class="carousel__slide__figure">
+							<img class="carousel__slide__img" src="./assets/round.png" width="150" height="150" />
+							<p class="text text--body" id="carousel-slide-1-9">I'm a water fanatic</p>
+							<button class="button button--orange button--small">
+								Button
+							</button>
+						</figure>
 					</li>
 				</ul>
 			</section>
 		</section>
 		<section class="section section--with-article section--with-article--image">
-			<article class="article article--left section__article section--with-article--image__article"
-				aria-labelledby="article-title-2" aria-describedby="article-text-2">
+			<article class="article article--left section--with-article--image__article" aria-labelledby="article-title-2"
+				aria-describedby="article-text-2">
 				<h2 class="text text--section-title article__title" id="article-title-2">
 					Lorem Ipsum pop it?
 				</h2>

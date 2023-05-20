@@ -1,4 +1,5 @@
 @use "reset.css";
+@use "sass:math";
 
 // #region variables
 $md: 640px;
@@ -201,13 +202,9 @@ body {
 @keyframes appear {
   from {
     opacity: 0;
-    transform: scale(0)
-      translate(var(--appear-x-start, 0), var(--appear-y-end, 0));
   }
   to {
     opacity: 1;
-    transform: scale(1)
-      translate(var(--appear-x-end, 0), var(--appear-y-end, 0));
   }
 }
 
@@ -215,13 +212,8 @@ body {
   animation: appear 0.25s ease-in-out both;
 }
 
-.a-disappear {
-  animation: appear 0.25s ease-in-out reverse both;
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .a-appear,
-  .a-disappear {
+  .a-appear {
     animation-duration: 0.1s;
   }
 }
@@ -345,31 +337,32 @@ a {
 }
 
 .carousel {
-  @extend %w-full;
-  $animation-duration: 0.5s;
+  @extend %w-full, .article;
+  container-type: inline-size;
+  cursor: grab;
+
+  overflow-x: hidden;
 
   &__container {
-    @extend %w-full;
-    overflow-x: hidden;
+    @extend %w-full, %flex;
 
-    // gap: 4rem;
-    // animation-duration: $animation-duration;
-
-    @media (width > $md) {
-      flex-direction: row;
-      justify-content: space-between;
-    }
+    // 26.1% of .carousel width
+    gap: 26.1cqw;
   }
 
   &__slide {
     @extend %flex-col;
 
     gap: 0.8125rem;
-    animation-duration: $animation-duration;
-    --appear-x-start: 25rem;
+    flex-shrink: 0;
+    display: inline-flex;
+    user-select: none;
 
-    &.a-disappear {
-      --appear-x-start: -25rem;
+    &__img {
+      @extend %img-cover;
+      vertical-align: middle;
+      transform-origin: center;
+      pointer-events: none;
     }
   }
 }
@@ -378,7 +371,7 @@ a {
   @extend %bg-orange-400;
   $pt: 2.125rem;
 
-  padding: $pt 4.625rem $pt * 2/3;
+  padding: $pt 4.625rem math.div($pt * 2, 3);
   position: fixed;
   top: 0;
   left: 0;
@@ -435,7 +428,7 @@ a {
       bottom: $img-h * 0.9;
       mix-blend-mode: multiply;
 
-      // used in %absolute-center
+      // użyte w %absolute-center
       --translate-x: 1rem;
       --translate-y: 75%;
     }
@@ -457,7 +450,7 @@ a {
         right: -40%;
         bottom: 0%;
         object-position: right center;
-        --translate-x: #{-$img-w / 3};
+        --translate-x: #{math.div(-$img-w, 3)};
         --translate-y: 75%;
       }
     }
@@ -474,7 +467,7 @@ a {
 
     &::before {
       @extend %absolute;
-      @include bg-image("./assets/background 1.png");
+      @include bg-image("../assets/background 1.png");
 
       background-position: center 80%;
       content: "";
@@ -498,11 +491,14 @@ a {
 
   &--with-carousel {
     @extend %bg-blue-300, %flex, %flex-center;
+    padding-inline: 0;
 
-    padding-block: 5.875rem;
+    @media (width >= $md) {
+      padding-block: 5.875rem;
 
-    &__carousel {
-      max-width: 58.875rem;
+      &__carousel {
+        max-width: 58.875rem;
+      }
     }
   }
 }
