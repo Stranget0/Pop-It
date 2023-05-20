@@ -343,15 +343,15 @@ button {
   transform: translate(calc(-50% + var(--translate-x, 0%)), calc(-50% + var(--translate-y, 0%)));
 }
 
-.section--with-carousel, .menu, .space-between, .footer__list, .section--with-article--image, .carousel__slide, .carousel__container, .article {
+.section--with-carousel, .menu, .space-between, .footer__list, .section--with-article--image, .carousel__slide, .article {
   display: flex;
 }
 
-.section--with-article--image, .carousel__slide, .carousel__container, .article {
+.section--with-article--image, .carousel__slide, .article {
   flex-direction: column;
 }
 
-.section--with-carousel, .section--with-article--image, .carousel__container, .article {
+.section--with-carousel, .section--with-article--image, .article {
   align-items: center;
   justify-content: center;
 }
@@ -456,6 +456,42 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0) translate(var(--appear-x-start, 0), var(--appear-y-end, 0));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translate(var(--appear-x-end, 0), var(--appear-y-end, 0));
+  }
+}
+.a-appear {
+  animation: appear 0.25s ease-in-out both;
+}
+
+.a-disappear {
+  animation: appear 0.25s ease-in-out reverse both;
+}
+
+@keyframes carousel-shift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-214px);
+  }
+}
+.carousel-container--shift {
+  animation: carousel-shift 0.25s ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a-appear,
+  .a-disappear {
+    animation-duration: 0.1s;
+  }
+}
 @media (hover: hover) {
   a {
     position: relative;
@@ -557,7 +593,7 @@ body {
 }
 
 .carousel__container {
-  gap: 4rem;
+  overflow-x: hidden;
 }
 @media (width > 640px) {
   .carousel__container {
@@ -567,6 +603,11 @@ body {
 }
 .carousel__slide {
   gap: 0.8125rem;
+  animation-duration: 0.5s;
+  --appear-x-start: 25rem;
+}
+.carousel__slide.a-disappear {
+  --appear-x-start: -25rem;
 }
 
 .header {

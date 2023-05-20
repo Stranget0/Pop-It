@@ -38,4 +38,50 @@ class BurgerMenu extends HTMLElement {
 
 customElements.define("burger-menu", BurgerMenu, { extends: "nav" });
 
-class Carousel extends HTMLElement {}
+class Carousel extends HTMLUListElement {
+  slides = [];
+
+  constructor() {
+    super();
+    const hasMinWidth = matchMedia(`(min-width: ${this.dataset.minWidth})`);
+    if (!hasMinWidth) return;
+
+    const slidesMax = parseInt(this.dataset.slidesCount);
+    const slidesOptions = this.querySelectorAll(".carousel__slide");
+
+    if (slidesMax > slidesOptions.length) return;
+
+    let i = 0;
+    for (const slide of slidesOptions) {
+      const cloned = slide.cloneNode(true);
+      cloned.setAttribute("data-index", `${i++}`);
+      this.slides.push(cloned);
+      slide.remove();
+    }
+
+    this.append(
+      ...this.slides.slice(0, slidesMax).map((slide) => slide.cloneNode(true))
+    );
+
+    this.intervalId = setInterval(() => {
+      this.shift();
+      this.children[0].disappear(() => {
+        const lastChild = this.children[this.children.length - 1];
+        const lastSliceIndex = parseInt(lastChild.dataset.index);
+        const nextSliceIndex = (lastSliceIndex + 1) % this.slides.length;
+        const nextSlide = this.slides[nextSliceIndex].cloneNode(true);
+        nextSlide.appear();
+        this.append(nextSlide);
+      });
+    }, 5000);
+  }
+
+  shift() {
+    this.classList.add("carousel-container--shift");
+    this.addEventListener("animationend", () => {
+      this.classList.remove("carousel-container--shift");
+    });
+  }
+}
+
+customElements.define("carousel-container", Carousel, { extends: "ul" });

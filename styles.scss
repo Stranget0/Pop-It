@@ -197,6 +197,36 @@ body {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
 
+// #region animations
+@keyframes appear {
+  from {
+    opacity: 0;
+    transform: scale(0)
+      translate(var(--appear-x-start, 0), var(--appear-y-end, 0));
+  }
+  to {
+    opacity: 1;
+    transform: scale(1)
+      translate(var(--appear-x-end, 0), var(--appear-y-end, 0));
+  }
+}
+
+.a-appear {
+  animation: appear 0.25s ease-in-out both;
+}
+
+.a-disappear {
+  animation: appear 0.25s ease-in-out reverse both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .a-appear,
+  .a-disappear {
+    animation-duration: 0.1s;
+  }
+}
+// #endregion
+
 // #region atoms
 a {
   @extend %relative;
@@ -316,10 +346,14 @@ a {
 
 .carousel {
   @extend %w-full;
+  $animation-duration: 0.5s;
 
   &__container {
-    @extend %flex-col, %flex-center, %w-full;
-    gap: 4rem;
+    @extend %w-full;
+    overflow-x: hidden;
+
+    // gap: 4rem;
+    // animation-duration: $animation-duration;
 
     @media (width > $md) {
       flex-direction: row;
@@ -331,6 +365,12 @@ a {
     @extend %flex-col;
 
     gap: 0.8125rem;
+    animation-duration: $animation-duration;
+    --appear-x-start: 25rem;
+
+    &.a-disappear {
+      --appear-x-start: -25rem;
+    }
   }
 }
 
