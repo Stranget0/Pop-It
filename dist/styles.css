@@ -561,7 +561,8 @@ body {
     background-color: var(--color-orange-400);
   }
   .menu__list[aria-expanded=true] .menu__list__item {
-    padding: 1rem;
+    animation: appear 0.2s ease-in both;
+    padding: 0.2rem 0.5rem;
   }
 }
 @media (width >= 640px) {

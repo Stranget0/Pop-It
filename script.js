@@ -31,6 +31,8 @@ class BurgerMenu extends HTMLElement {
     this.handleCloseClick = this.handleCloseClick.bind(this);
     this.setIsOpen = this.setIsOpen.bind(this);
     this.getIsExpanded = this.getIsExpanded.bind(this);
+    this.addListeners = this.addListeners.bind(this);
+    this.removeListeners = this.removeListeners.bind(this);
   }
 
   handleCloseClick(e) {
@@ -42,16 +44,25 @@ class BurgerMenu extends HTMLElement {
     this.listElement.setAttribute("aria-expanded", `${isOpen}`);
     this.setAttribute("aria-hidden", `${isOpen}`);
     if (isOpen) {
-      this.setAttribute("hidden");
-      setTimeout(() => window.addEventListener("click", this.handleCloseClick));
+      this.setAttribute("hidden", "");
+      this.timeoutId = setTimeout(this.addListeners);
     } else {
+      clearTimeout(this.timeoutId);
       this.removeAttribute("hidden");
-      window.removeEventListener("click", this.handleCloseClick);
+      this.removeListeners();
     }
   }
 
   getIsExpanded(listElement) {
     return listElement.getAttribute("aria-expanded");
+  }
+  addListeners() {
+    window.addEventListener("click", this.handleCloseClick);
+    window.addEventListener("touchend", this.handleCloseClick);
+  }
+  removeListeners() {
+    window.removeEventListener("click", this.handleCloseClick);
+    window.removeEventListener("touchend", this.handleCloseClick);
   }
 }
 
@@ -194,6 +205,7 @@ class Carousel extends HTMLElement {
         nextSlideIndex < this.slides.length ? nextSlideIndex : 0;
     }, 2500);
   }
+
   stopAutoScroll() {
     clearInterval(this.autoScrollIntervalId);
   }

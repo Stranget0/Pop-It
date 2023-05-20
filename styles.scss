@@ -309,6 +309,7 @@ a {
     &__list {
       display: none;
 
+      // Semantic CSS
       &[aria-expanded="true"] {
         display: flex;
         flex-direction: column;
@@ -320,7 +321,8 @@ a {
       }
 
       &[aria-expanded="true"] &__item {
-        padding: 1rem;
+        animation: appear 0.2s ease-in both;
+        padding: 0.2rem 0.5rem;
       }
     }
   }
