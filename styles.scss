@@ -272,6 +272,18 @@ a {
   padding-inline: 2rem;
   padding-block: 0.5rem;
 }
+
+.signature {
+  opacity: 0.75;
+  margin-top: 1rem;
+  text-align: center;
+  text-decoration: underline;
+  --underline-color: red;
+
+  &__red {
+    color: red;
+  }
+}
 // #endregion
 
 // #region molecules
@@ -293,6 +305,8 @@ a {
   }
 
   &__title {
+    @extend .text, .text--section-title;
+
     margin-bottom: 1.0625rem;
   }
 }
@@ -383,6 +397,9 @@ a {
 
   &__list {
     @extend %w-full;
+    &__item {
+      @extend .text, .text--body;
+    }
   }
 
   @media (width >= $md) {
@@ -483,6 +500,8 @@ a {
     }
 
     &__title {
+      @extend .text, .text--title;
+
       margin-bottom: 0.4375rem;
     }
 

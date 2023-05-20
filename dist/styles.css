@@ -320,12 +320,12 @@ button {
 }
 
 .button, .text--body--u,
-.text--body--ub, .text--section-title, .text--title {
+.text--body--ub, .text--section-title, .article__title, .text--title, .section--hero__title {
   text-transform: uppercase;
 }
 
 .text--body--b,
-.text--body--ub, .text--title {
+.text--body--ub, .text--title, .section--hero__title {
   font-weight: 900;
 }
 
@@ -500,19 +500,19 @@ body {
   }
 }
 
-.text {
+.text, .section--hero__title, .header__list__item, .article__title {
   max-width: 75ch;
 }
 
-.text--title {
+.text--title, .section--hero__title {
   font-size: 8.6875rem;
 }
 
-.text--section-title {
+.text--section-title, .article__title {
   font-size: 1.5rem;
 }
 
-.text--body, .button {
+.text--body, .header__list__item, .button {
   font-size: 1rem;
   line-height: 1.46;
 }
@@ -525,6 +525,17 @@ body {
 .button--small {
   padding-inline: 2rem;
   padding-block: 0.5rem;
+}
+
+.signature {
+  opacity: 0.75;
+  margin-top: 1rem;
+  text-align: center;
+  text-decoration: underline;
+  --underline-color: red;
+}
+.signature__red {
+  color: red;
 }
 
 .space-between, .footer__list {
