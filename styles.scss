@@ -371,6 +371,10 @@ a {
 
   overflow: hidden;
 
+  &[data-is-dragging="true"] {
+    cursor: grabbing;
+  }
+
   &__container {
     @extend %w-full, %flex;
 

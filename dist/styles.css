@@ -601,6 +601,9 @@ body {
   cursor: grab;
   overflow: hidden;
 }
+.carousel[data-is-dragging=true] {
+  cursor: grabbing;
+}
 .carousel__container {
   gap: 26.1cqw;
 }
