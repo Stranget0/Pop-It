@@ -513,7 +513,7 @@ a {
       content: "";
       inset: 0;
 
-      // Customowy filtr svg. Ciekawy efekt, niestety nie działa na mozilli bez użycia JS
+      // customowy filtr svg
       filter: url(#noise);
       z-index: -1;
     }

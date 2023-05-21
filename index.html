@@ -197,14 +197,13 @@
 			</a></p>
 	</footer>
 
-	<!-- Ciekawy efekt. Niestety nie działa na mozilli bez użycia JS -->
-	<svg style="display: none;">
+	<svg style="height: 0px;position:absolute;">
 		<filter id="noise">
 			<feTurbulence type="fractalNoise" baseFrequency=".02" out="noise">
 			</feTurbulence>
 			<feDisplacementMap in="SourceGraphic" in2="noise" xChannelSelector="R" yChannelSelector="G">
-				<animate attributeName="scale" values="200;0" keyTimes="0;1" begin="0s" dur=".5s" fill="freeze">
-				</animate>
+				<!-- Niestety animacja nie działa na mozilli -->
+				<animate attributeName="scale" values="0;100;0" dur=".5s" fill="freeze" />
 			</feDisplacementMap>
 		</filter>
 	</svg>
